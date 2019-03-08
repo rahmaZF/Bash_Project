@@ -3,7 +3,7 @@ generate_error_msg(){
 code_error=$1 
 case $code_error in
 0) 
-echo "you should enter a database name   "
+echo "you should enter a value  "
 ;;
 2)
 echo "this name already exist "
@@ -12,8 +12,4 @@ echo "this name already exist "
 3)
 echo "no database with a name you entered"
 esac 
-
-
-
-
 }
