@@ -28,22 +28,23 @@ sub_menu(){
  create ()
  {
      read dbName
-    local result_is_valid_dbName=$(is_valid_dbName $dbName)
+    local result_isNot_EmptyString=$(isNot_EmptyString $dbName)
     local result_isNot_exist=$(isNot_exist "../DBMS/$dbName") 
-    if [ $result_is_valid_dbName -eq 1 -a $result_isNot_exist -eq 1 ]
+    if [ $result_isNot_EmptyString -eq 1 -a $result_isNot_exist -eq 1 ]
     then
         ./createdb.sh $dbName
     fi 
-    if [ $result_is_valid_dbName -eq 0 ]
+    if [ $result_isNot_EmptyString -eq 0 ]
     then
-        generate_error_msg $result_is_valid_dbName
+        generate_error_msg $result_isNot_EmptyString
         sub_menu  " enter db name again" create  
       
     fi
 
     if [ $result_isNot_exist -eq 2 ]
     then
-     echo "existed"
+       generate_error_msg $result_isNot_exist
+        sub_menu  " enter db name again" create 
     fi 
 
     
@@ -56,8 +57,6 @@ main_menu(){
     do
     case $REPLY in
     1) echo "enter the name of the database"
-        
-        
             create 
             
         break

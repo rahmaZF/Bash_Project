@@ -1,4 +1,4 @@
-is_valid_dbName ()
+isNot_EmptyString ()
  {
     if [[ -z $1 ]]
    then
