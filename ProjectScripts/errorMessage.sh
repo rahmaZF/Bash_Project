@@ -9,7 +9,8 @@ echo "you should enter a database name   "
 echo "this name already exist "
 
 ;;
-
+3)
+echo "no database with a name you entered"
 esac 
 
 

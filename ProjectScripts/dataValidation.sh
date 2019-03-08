@@ -22,3 +22,16 @@ isNot_EmptyString ()
   
 
  }
+
+ is_exist()
+ { 
+  if [ -d $1 ]
+  then 
+  echo 1
+  else 
+  echo 3
+  fi 
+
+  
+
+ }
