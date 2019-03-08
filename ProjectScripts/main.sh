@@ -1,7 +1,12 @@
+ . dataValidation.sh
 select choice in "create database" "use Database" "show databases" "delete database" "Exit"
 do
 case $REPLY in
-1) echo "create database"
+1) echo "enter the name of the database"
+   read dbName 
+  
+      is_valid_dbName $dbName
+       ./createdb.sh
 
 ;;
 2) echo "use Database"
