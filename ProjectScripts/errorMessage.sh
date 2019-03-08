@@ -11,7 +11,8 @@ echo "this name already exist "
 3)
 echo "this is not valid name "
 ;;
-
+3)
+echo "no database with a name you entered"
 esac 
 
 
