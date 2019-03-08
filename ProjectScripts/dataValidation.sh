@@ -16,7 +16,7 @@ isNot_EmptyString ()
 
  isNot_exist()
  { 
-  if [ -d $1 ]
+  if [ -e $1 ]
   then 
   echo 2
   else 
@@ -26,16 +26,18 @@ isNot_EmptyString ()
   
 
  }
-#  isValid_String()
-#  { LC_ALL=C 
-#   shopt -s extglob
-#    if [[ $1 =~ ^[A-Za-z]\w*$] ]];   then
-#    echo 1
-#    else 
-#    echo 3
-#    fi
+ isValid_String()
+ 
+ { 
+  if [[ $1 == [a-zA-Z_]+([a-zA-Z0-9_]*) ]]
 
-#  }
+   then #matched 
+   echo 1
+   else 
+   echo 5
+   fi
+
+ }
 
 
  is_exist()

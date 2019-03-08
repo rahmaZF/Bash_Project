@@ -1,1 +1,1 @@
-touch $1
+ touch $1  $2
