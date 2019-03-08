@@ -1,29 +1,88 @@
+
  . dataValidation.sh
-select choice in "create database" "use Database" "show databases" "delete database" "Exit"
-do
-case $REPLY in
-1) echo "enter the name of the database"
-   read dbName 
-  
-      is_valid_dbName $dbName
-       ./createdb.sh
+ . errorMessage.sh
+sub_menu(){
+    select choice in "try again" "back to main menu" "exit program" 
+    do
+    case $REPLY in
+    1) 
+       echo $1
+       $2     
+        break
+        ;;
+    2) echo "back"
+    main_menu
+        break
+        ;;
+    3) echo "good bye"
+        exit 1
+        ;;
+    *)echo "invalid choice , enter your choice again"
 
-;;
-2) echo "use Database"
+    ;;
 
-;;
-3) echo "show databases"
+    esac
 
-;;
-4) echo "delete database"
+    done
+}
+ create ()
+ {
+     read dbName
+    local result_is_valid_dbName=$(is_valid_dbName $dbName)
+    local result_isNot_exist=$(isNot_exist "../DBMS/$dbName") 
+    if [ $result_is_valid_dbName -eq 1 -a $result_isNot_exist -eq 1 ]
+    then
+        ./createdb.sh $dbName
+    fi 
+    if [ $result_is_valid_dbName -eq 0 ]
+    then
+        generate_error_msg $result_is_valid_dbName
+        sub_menu  " enter db name again" create  
+      
+    fi
 
-;;
-5) echo "good bye"
-break
-;;
-*)echo "invalid choice "
-;;
+    if [ $result_isNot_exist -eq 2 ]
+    then
+     echo "existed"
+    fi 
 
-esac
+    
 
-done
+ }
+
+
+main_menu(){
+    select choice in "create database" "use Database" "show databases" "delete database" "Exit"
+    do
+    case $REPLY in
+    1) echo "enter the name of the database"
+        
+        
+            create 
+            
+        break
+        ;;
+    2) echo "use Database"
+        break
+        ;;
+    3) echo "show databases"
+        break
+        ;;
+    4) echo "delete database"
+        break
+        ;;
+    5) echo "good bye"
+
+        exit 1
+        ;;
+    *)echo "invalid choice , enter your choice again"
+
+    ;;
+
+    esac
+
+    done
+
+} 
+
+main_menu 
