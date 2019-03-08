@@ -1,6 +1,10 @@
 
+#!/usr/bin/bash
+LC_ALL=C 
+shopt -s extglob
  . dataValidation.sh
  . errorMessage.sh
+
 sub_menu(){
     select choice in "try again" "back to main menu" "exit program" 
     do
@@ -30,6 +34,7 @@ sub_menu(){
      read dbName
     local result_isNot_EmptyString=$(isNot_EmptyString $dbName)
     local result_isNot_exist=$(isNot_exist "../DBMS/$dbName") 
+    local result_isValid_String=$(isValid_String $dbName)
     if [ $result_isNot_EmptyString -eq 1 -a $result_isNot_exist -eq 1 ]
     then
         ./createdb.sh $dbName
@@ -46,6 +51,12 @@ sub_menu(){
        generate_error_msg $result_isNot_exist
         sub_menu  " enter db name again" create 
     fi 
+    # if [ $result_isValid_String -eq 3 ]
+    # then 
+    #     generate_error_msg $result_isValid_String
+    #     sub_menu  " enter db name again" create 
+
+    # fi  
 
     
 
