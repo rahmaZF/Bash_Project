@@ -1,3 +1,7 @@
+#!/usr/bin/bash
+LC_ALL=C 
+shopt -s extglob
+
 isNot_EmptyString ()
  {
     if [[ -z $1 ]]
@@ -22,6 +26,17 @@ isNot_EmptyString ()
   
 
  }
+#  isValid_String()
+#  { LC_ALL=C 
+#   shopt -s extglob
+#    if [[ $1 =~ ^[A-Za-z]\w*$] ]];   then
+#    echo 1
+#    else 
+#    echo 3
+#    fi
+
+#  }
+
 
  is_exist()
  { 
@@ -35,3 +50,4 @@ isNot_EmptyString ()
   
 
  }
+
