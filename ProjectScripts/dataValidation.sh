@@ -75,4 +75,15 @@ isNot_EmptyString ()
   
 
  }
+is_Int ()
+{
 
+ if ! [[ $1 =~ ^[0-9]+$ ]]
+then 
+echo 6
+
+else 
+echo 1
+fi
+
+}

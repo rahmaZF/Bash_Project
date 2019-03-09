@@ -80,8 +80,8 @@
 createTbl()
 {
     read tblName
-    meta="meta"
-    metafile=$tblName$meta
+    meta=".meta"
+    metafile=$meta$tblName
     local result_isNot_EmptyString=$(isNot_EmptyString $tblName)
     local result_isFile_Not_exist=$(isFile_Not_exist "$1/$tblName") 
     local result_isValid_String=$(isValid_String $tblName)
@@ -151,21 +151,56 @@ sub_menu(){
         break
         ;;
     2) echo "choose table to display"
+        meta=".meta"
+           select choice in `ls ../DBMS/$1`
+            do
+             if [[ -z $choice ]]
+                then
+             echo "invalid choice"
+             else
+            file=$choice
+            echo $file
+             metafile=$meta$file
+            ./displayTbls.sh ../DBMS/$1/$file ../DBMS/$1/$metafile           
+            use_menu $1
+            fi
+            done
             
         break
         ;;
     3) echo "choose table to delete"
             select choice in `ls ../DBMS/$1`
             do
+             if [[ -z $choice ]]
+                then
+             echo "invalid choice"
+             else
             file=$choice
             echo $file
             ./deleteTbl.sh ../DBMS/$1/$file
             echo "table deleted successfully"
             use_menu $1
+            fi
             done 
         break
         ;;
     4) echo "choose table to insert in"
+          meta=".meta"
+           select choice in `ls ../DBMS/$1`
+            do
+             if [[ -z $choice ]]
+                then
+             echo "invalid choice"
+             else
+            file=$choice
+            echo $file
+             metafile=$meta$file
+            ./insertIntoTbl.sh ../DBMS/$1/$file ../DBMS/$1/$metafile           
+            use_menu $1
+            fi
+             
+            done 
+      
             
         break
         ;;
@@ -173,11 +208,38 @@ sub_menu(){
 
         
         ;;
-    6)echo "choose table"
-
+    6)echo "choose table to display row"
+            meta=".meta"
+           select choice in `ls ../DBMS/$1`
+            do
+             if [[ -z $choice ]]
+                then
+             echo "invalid choice"
+             else
+            file=$choice
+            echo $file
+             metafile=$meta$file
+            ./displayRow.sh ../DBMS/$1/$file ../DBMS/$1/$metafile           
+            use_menu $1
+            fi
+            done
 
     ;;
-    7)echo "choose table"
+    7)echo "choose table to delete row"
+     meta=".meta"
+           select choice in `ls ../DBMS/$1`
+            do
+             if [[ -z $choice ]]
+                then
+             echo "invalid choice"
+             else
+            file=$choice
+            echo $file
+             metafile=$meta$file
+            ./deleteRow.sh ../DBMS/$1/$file ../DBMS/$1/$metafile           
+            use_menu $1
+            fi
+            done
     ;;    
     *)echo "invalid choice , enter your choice again"
 

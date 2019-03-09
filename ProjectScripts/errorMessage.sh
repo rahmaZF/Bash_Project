@@ -20,5 +20,8 @@ echo "name should not contain space "
 5)
 echo "not a vaild name"
 ;;
+6)
+echo "not valid number"
+;;
 esac 
 }
