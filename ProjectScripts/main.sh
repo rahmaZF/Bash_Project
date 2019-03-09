@@ -63,11 +63,19 @@
  delete(){
     select choice in `ls ../DBMS/`
     do
+      if [[ -z $choice ]]
+        then
+          echo "invalid choice"
+         
+       else
         dir=$choice
         echo $dir
+      
         ./deletedb.sh "../DBMS/$dir"
         main_menu
-    done   
+   
+      fi 
+     done 
  }
 createTbl()
 {
