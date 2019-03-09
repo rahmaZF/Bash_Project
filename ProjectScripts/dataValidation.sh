@@ -14,7 +14,7 @@ isNot_EmptyString ()
 
  }
 
- isNot_exist()
+ isDir_Not_exist()
  { 
   if [ -d $1 ]
   then 

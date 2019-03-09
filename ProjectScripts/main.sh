@@ -9,10 +9,10 @@
  {
      read dbName
     local result_isNot_EmptyString=$(isNot_EmptyString $dbName)
-    local result_isNot_exist=$(isNot_exist "../DBMS/$dbName") 
+    local result_isDir_Not_exist=$(isDir_Not_exist "../DBMS/$dbName") 
     local result_isValid_String=$(isValid_String $dbName)
     
-    if [ $result_isNot_EmptyString -eq 1 -a $result_isNot_exist -eq 1  -a $result_isValid_String -eq 1 ]
+    if [ $result_isNot_EmptyString -eq 1 -a $result_isDir_Not_exist -eq 1  -a $result_isValid_String -eq 1 ]
     then
         ./createdb.sh $dbName
     fi 
@@ -23,9 +23,9 @@
       
     fi
 
-    if [ $result_isNot_exist -eq 2 ]
+    if [ $result_isDir_Not_exist -eq 2 ]
     then
-       generate_error_msg $result_isNot_exist
+       generate_error_msg $result_isDir_Not_exist
         sub_menu  " enter db name again" create 
     fi 
     if [ $result_isValid_String -eq 5 ]
