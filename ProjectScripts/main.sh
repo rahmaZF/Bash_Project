@@ -57,6 +57,7 @@
        generate_error_msg $result_is_exist
         sub_menu  "enter db name again" use 
     fi 
+  
  }
 
  delete(){
@@ -74,10 +75,10 @@ createTbl()
     meta="meta"
     metafile=$tblName$meta
     local result_isNot_EmptyString=$(isNot_EmptyString $tblName)
-    local result_isNot_exist=$(isNot_exist "$1/$tblName") 
+    local result_isFile_Not_exist=$(isFile_Not_exist "$1/$tblName") 
     local result_isValid_String=$(isValid_String $tblName)
     
-    if [ $result_isNot_EmptyString -eq 1 -a $result_isNot_exist -eq 1  -a $result_isValid_String -eq 1 ]
+    if [ $result_isNot_EmptyString -eq 1 -a $result_isFile_Not_exist -eq 1  -a $result_isValid_String -eq 1 ]
     then
         ./createTbl.sh $1/$tblName  $1/$metafile
     fi 
@@ -86,9 +87,9 @@ createTbl()
         generate_error_msg $result_isNot_EmptyString
         sub_menu  " enter table name again" createTbl      
     fi
-    if [ $result_isNot_exist -eq 2 ]
+    if [ $result_isFile_Not_exist -eq 2 ]
     then
-        generate_error_msg $result_isNot_exist
+        generate_error_msg $result_isFile_Not_exist
         sub_menu  " enter table name again" createTbl 
     fi 
     if [ $result_isValid_String -eq 5 ]

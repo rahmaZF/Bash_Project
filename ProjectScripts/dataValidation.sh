@@ -16,6 +16,19 @@ isNot_EmptyString ()
 
  isNot_exist()
  { 
+  if [ -d $1 ]
+  then 
+  echo 2
+  else 
+  echo 1
+  fi 
+
+  
+
+ }
+
+ isFile_Not_exist()
+ { 
   if [ -e $1 ]
   then 
   echo 2
