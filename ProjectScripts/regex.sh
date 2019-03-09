@@ -4,5 +4,10 @@
 #else echo not matched 
 #fi 
 
- count=468738
-echo  $count >> $1
+# count=468738
+#echo  $count >> $1
+
+if  grep -q "rahma" /etc/passwd 
+then
+echo "true"
+fi
