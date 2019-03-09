@@ -1,7 +1,17 @@
 #!/usr/bin/bash
 LC_ALL=C 
 shopt -s extglob
-
+hasNo_space()
+{
+case "$1" in  
+     *\ * )
+           echo 4
+          ;;
+       *)
+           echo 1
+           ;;
+esac
+}
 isNot_EmptyString ()
  {
     if [[ -z $1 ]]

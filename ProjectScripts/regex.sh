@@ -1,13 +1,31 @@
+var="kmk  mewkl"
 
-#if [[ $1 == [a-zA-Z_]+([a-zA-Z0-9_]*) ]]
-#then echo matched 
-#else echo not matched 
-#fi 
+
+
+case "$var" in  
+     *\ * )
+           echo "match"
+          ;;
+       *)
+           echo "no match"
+           ;;
+esac
+
+
+
+
 
 # count=468738
 #echo  $count >> $1
+#if  grep -q "rahma" /etc/passwd 
+#then
+#echo "true"
+#fi
 
-if  grep -q "rahma" /etc/passwd 
-then
-echo "true"
-fi
+#myregex= [a-zA-Z_]+([a-zA-Z0-9_]*)
+
+#regex='^[a-z|A-Z][0-9|a-z|A-Z|_|\d]*$'
+#intpattern="^[0-9]+$"
+#stringpattern="^[Aa-Zz]+$"
+
+

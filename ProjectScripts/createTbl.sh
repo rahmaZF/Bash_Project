@@ -34,10 +34,11 @@ then
 else
 
     # is Valid colName
-    #   local result_isNot_EmptyString=$(isNot_EmptyString $colName)
-    #   local result_isValid_String=$(isValid_String $colName)
+      local result_isNot_EmptyString=$(isNot_EmptyString $colName)
+      local result_isValid_String=$(isValid_String $colName)
    
- 
+  if [ $result_isNot_EmptyString -eq 1 -a $result_isValid_String -eq 1 ]
+  then
     select choice in "int" "string"
     do
         if [[ -z $choice ]]
@@ -49,6 +50,13 @@ else
         fi
     done 
         echo $colName$delemeter1$type >> $2
+
+
+   else 
+    echo "this column name is not valid "
+    ((i--))
+
+   fi     
 
    
 fi
