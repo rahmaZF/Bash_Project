@@ -1,8 +1,7 @@
  . dataValidation.sh
  touch $1  $2
- chmod  777 $1 
-  chmod 777 $2
-
+chmod 777 $1 
+chmod 777 $2
 #  isCol_not_exist()
 #  {
 #  if  grep -q $1 $2 
@@ -36,10 +35,11 @@ then
 else
 
     # is Valid colName
-    #   local result_isNot_EmptyString=$(isNot_EmptyString $colName)
-    #   local result_isValid_String=$(isValid_String $colName)
+      local result_isNot_EmptyString=$(isNot_EmptyString $colName)
+      local result_isValid_String=$(isValid_String $colName)
    
- 
+  if [ $result_isNot_EmptyString -eq 1 -a $result_isValid_String -eq 1 ]
+  then
     select choice in "int" "string"
     do
         if [[ -z $choice ]]
@@ -50,8 +50,56 @@ else
                 break
         fi
     done 
+<<<<<<< HEAD
         echo $colName$delemeter1$type >> $2 
         
+=======
+        
+#########
+PK="PK"
+if  grep -q $PK $2 
+then
+ echo $colName$delemeter1$type >> $2
+ 
+else
+echo "is $colName PK ?"
+
+ select choice in "yes" "no"
+ do 
+ case $REPLY in
+ 1)
+ echo $colName$delemeter1$type$delemeter1$PK >> $2
+ break
+ ;;
+ 2)
+ if [ $i -eq $num ]
+ then
+ echo $colName$delemeter1$type >> $2
+ echo "this table must contain a primay key , try again "
+ > $2
+ get_tbl_structure $1 $2
+ fi
+break
+;;
+ *) echo "invalid choise , enter your choice agian"
+ ;;
+
+ esac
+ 
+
+ done
+
+fi
+#########
+ 
+   else 
+    echo "this column name is not valid "
+    ((i--))
+
+   fi     
+
+   
+>>>>>>> 88e1fdf925897c19eacb7f9011e145fb5419183f
 fi
     done
 
