@@ -52,7 +52,7 @@ isNot_EmptyString ()
  isValid_String()
  
  { 
-  if [[ $1 == [a-zA-Z_]+([a-zA-Z0-9_]*) ]]
+  if [[ $1 =~ ^[a-z|A-Z][0-9|a-z|A-Z|_|\d]*$ ]]
 
    then #matched 
    echo 1

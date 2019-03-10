@@ -1,12 +1,5 @@
 
 
- if ! [[ $1 =~ ^[0-9]+$ ]]
-then 
-echo "not int"
-
-else 
-echo "int"
-fi
 
 
 

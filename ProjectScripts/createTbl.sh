@@ -65,6 +65,7 @@ echo "is $colName PK ?"
  case $REPLY in
  1)
  echo $colName$delemeter1$type$delemeter1$PK >> $2
+ echo $1$delemeter1$i>> ../DBMS/tablesPKs
  break
  ;;
  2)
