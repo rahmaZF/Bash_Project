@@ -1,5 +1,6 @@
- . dataValidation.sh
- touch $1  $2
+#!/bin/bash
+. dataValidation.sh
+touch $1  $2
 chmod 777 $1 
 chmod 777 $2
 #  isCol_not_exist()

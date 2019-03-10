@@ -1,3 +1,4 @@
+#!/bin/bash
  . dataValidation.sh
  . errorMessage.sh
 echo "insertIntoTbl"
@@ -89,18 +90,17 @@ fi
 
 }
 isValid_PK()
-{   pkToCheck=$1
+{   
+    pkToCheck=$1
     tablePath=$2
- pkFeildNum=`grep $2 "../DBMS/tablesPKs" | cut -d ' ' -f2` 
- echo $pkFeildNum
- array = ($(`cut -d ' ' -f$pkFeildNum $tablePath`))
- if [ $pkToCheck in $array ]
- then
- ehco 10
- else 
- echo 1
- fi
-
-
+    pkFeildNum=`grep $2 "../DBMS/tablesPKs" | cut -d ' ' -f2` 
+    echo $pkFeildNum
+    array = ($(`cut -d ' ' -f$pkFeildNum $tablePath`))
+    if [ $pkToCheck in $array ]
+    then
+    ehco 10
+    else 
+    echo 1
+    fi
 }
 insertIntoTbl $1 $2

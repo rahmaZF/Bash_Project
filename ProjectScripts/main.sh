@@ -1,10 +1,6 @@
-
 #!/usr/bin/bash
-
  . dataValidation.sh
  . errorMessage.sh
-
-
  create()
  {
      read dbName
