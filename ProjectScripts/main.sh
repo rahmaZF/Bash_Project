@@ -211,11 +211,13 @@ sub_menu(){
             file=$choice
             echo $file
              metafile=$meta$file
-            ./insertIntoTbl.sh ../DBMS/$1/$file ../DBMS/$1/$metafile           
-            use_menu $1
+           
             fi
              
             done 
+             ./insertIntoTbl.sh ../DBMS/$1/$file ../DBMS/$1/$metafile   
+                       
+            use_menu $1
       
             
         break
