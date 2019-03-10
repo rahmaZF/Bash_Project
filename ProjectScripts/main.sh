@@ -9,12 +9,20 @@
  {
      read dbName
     local result_isNot_EmptyString=$(isNot_EmptyString $dbName)
-    local result_isDir_Not_exist=$(isDir_Not_exist "../DBMS/$dbName") 
+   
     local result_isValid_String=$(isValid_String $dbName)
     
-    if [ $result_isNot_EmptyString -eq 1 -a $result_isDir_Not_exist -eq 1  -a $result_isValid_String -eq 1 ]
-    then
+    if [ $result_isNot_EmptyString -eq 1 -a $result_isValid_String -eq 1 ]
+    then 
+       local result_isDir_Not_exist=$(isDir_Not_exist "../DBMS/$dbName") 
+      if [ $result_isDir_Not_exist -eq 1 ]
+      then
         ./createdb.sh $dbName
+      else
+        generate_error_msg $result_isDir_Not_exist
+        sub_menu  " enter db name again" create 
+      fi  
+
     fi 
     if [ $result_isNot_EmptyString -eq 0 ]
     then
@@ -23,11 +31,7 @@
       
     fi
 
-    if [ $result_isDir_Not_exist -eq 2 ]
-    then
-       generate_error_msg $result_isDir_Not_exist
-        sub_menu  " enter db name again" create 
-    fi 
+   
     if [ $result_isValid_String -eq 5 ]
     then 
         generate_error_msg $result_isValid_String
@@ -38,13 +42,21 @@
   use(){
      read dbName
     local result_isNot_EmptyString=$(isNot_EmptyString $dbName)
-    local result_is_exist=$(is_exist "../DBMS/$dbName") 
+     
     local result_isValid_String=$(isValid_String $dbName)
     
-    if [ $result_isNot_EmptyString -eq 1 -a $result_is_exist -eq 1 ]
+    if [ $result_isNot_EmptyString -eq 1 -a $result_isValid_String -eq 1 ]
     then
+    local result_is_exist=$(is_exist "../DBMS/$dbName")
+     if [ $result_is_exist -eq 1 ]
+     then
         ./usedb.sh "../DBMS/$dbName"
         use_menu "../DBMS/$dbName"
+     else
+        generate_error_msg $result_is_exist
+        sub_menu  "enter db name again" use 
+
+     fi     
     fi 
     if [ $result_isNot_EmptyString -eq 0 ]
     then
@@ -52,11 +64,14 @@
         sub_menu  "enter db name again" use  
       
     fi
-    if [ $result_is_exist -eq 3 ]
+     if [ $result_isValid_String  -eq 5 ]
     then
-       generate_error_msg $result_is_exist
-        sub_menu  "enter db name again" use 
-    fi 
+        generate_error_msg $result_isValid_String 
+        sub_menu  "enter db name again" use  
+      
+    fi
+
+   
   
  }
 
@@ -88,6 +103,7 @@ createTbl()
     
     if [ $result_isNot_EmptyString -eq 1 -a $result_isFile_Not_exist -eq 1  -a $result_isValid_String -eq 1 ]
     then
+         chmod 777 $1
         ./createTbl.sh $1/$tblName  $1/$metafile
     fi 
     if [ $result_isNot_EmptyString -eq 0 ]

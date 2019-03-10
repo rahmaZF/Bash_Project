@@ -2,7 +2,7 @@
  . errorMessage.sh
 echo "insertIntoTbl"
 insertIntoTbl()
-{
+{ $tablePath=$1
 for col in `cut -d' ' -f1 $2`
  do 
 
@@ -17,7 +17,7 @@ for col in `cut -d' ' -f1 $2`
 if [ $colType == "int" ]
 then
     local result_is_Int=$(is_Int $colVal)
-    # local result_isValid_PK=$(isValid_PK )
+    local result_isValid_PK=$(isValid_PK $colVal $tablePath)
     if [ $result_is_Int -eq 1 ]
     then
     echo -n  $colVal " " >> $1
@@ -42,23 +42,14 @@ fi
  
  done 
 
-#  echo "===">>$1
+
 }
-# isValid_PK()
-# {
-#  if [ $col == $colPK ]
-# then
-#    local result_isNot_EmptyString=$(isNot_EmptyString $colVal)
-#    local result_isUnique=$(isUnique $colVal) 
-
-#    if [ $result_isNot_EmptyString -eq 1 -a  $result_isUnique -eq 1 ]
-#    then 
-     
-
-#    fi
-
-#  fi
+isValid_PK()
+{   pkToCheck=$1
+    tablePath=$2
+ pkFeildNum=`grep $2 "../DBMS/tablesPKs" | cut -d ' ' -f2` 
+ echo $pkFeildNum
 
 
-# }
+}
 insertIntoTbl $1 $2
