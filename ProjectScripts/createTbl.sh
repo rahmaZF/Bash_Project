@@ -1,5 +1,6 @@
- . dataValidation.sh
- touch $1  $2
+#!/bin/bash
+. dataValidation.sh
+touch $1  $2
 chmod 777 $1 
 chmod 777 $2
 #  isCol_not_exist()
@@ -13,7 +14,7 @@ chmod 777 $2
 
 
 #  }
- 
+
 get_tbl_structure()
 { delemeter1=" "
   delemeter2="\n"
@@ -50,6 +51,10 @@ else
                 break
         fi
     done 
+<<<<<<< HEAD
+        echo $colName$delemeter1$type >> $2 
+        
+=======
         
 #########
 PK="PK"
@@ -96,11 +101,11 @@ fi
    fi     
 
    
+>>>>>>> 88e1fdf925897c19eacb7f9011e145fb5419183f
 fi
-
     done
 
-
-
 }
+
+
 get_tbl_structure $1 $2

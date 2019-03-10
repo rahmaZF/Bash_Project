@@ -1,3 +1,4 @@
+#!/bin/bash
  . dataValidation.sh
  . errorMessage.sh
 echo "insertIntoTbl"
@@ -118,5 +119,4 @@ fi
 
 
 }
-
 insertIntoTbl $1 $2
